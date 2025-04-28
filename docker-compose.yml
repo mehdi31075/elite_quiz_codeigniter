@@ -9,9 +9,13 @@ services:
       - "8000:80"
     volumes:
       - ./:/var/www/html
+      - ./apache-config.conf:/etc/apache2/sites-available/000-default.conf  # Custom Apache config
     depends_on:
       - db
     restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile # Ensure you have this Dockerfile in your project
 
   db:
     image: mysql:5.7
@@ -30,3 +34,4 @@ services:
 
 volumes:
   db_data:
+
