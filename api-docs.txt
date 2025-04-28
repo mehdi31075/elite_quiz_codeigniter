@@ -335,8 +335,7 @@ a. For Sign Up:-
 	subcategory:2   //{optional}
 	type_id:1       // for fun_n_learn_id
 
-55. check_user_exists
-	firebase_id:mf5FQ7MtNwdguEDMlTLNarkj4AZ2 //Firebase ID
+55. check_user_exists (Token Required)
 
 56. get_maths_questions
 	type:category or subcategory

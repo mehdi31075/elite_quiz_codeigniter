@@ -1,0 +1,25 @@
+@BASE_URL = http://localhost:8000/Api
+# @BASE_URL = https://fmv-001-g033.hiper.vene:444/api
+
+@CONTENT_TYPE =  application/json
+@API_VERSION = 2.0
+@TOKEN = Bearer eyJ0eXAiOiJqd3QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NDU4NDc2MjYsImlzcyI6IlF1aXoiLCJleHAiOjE3NDg0Mzk2MjYsInVzZXJfaWQiOiIzIiwiZmlyZWJhc2VfaWQiOiI0MzU2Iiwic3ViIjoiUXVpeiBBdXRoZW50aWNhdGlvbiJ9.89NF5ls7yq_IkPD4EIjqaGxMkT-eUx23szpnbTEFs9I
+
+### Login
+Post {{BASE_URL}}/user_signup
+Content-Type: {{CONTENT_TYPE}}
+
+{
+    "firebase_id": "09090",
+	"type":"email",
+	"name":"Abc Xyz",
+	"email":"abc@yaoo.com",
+	"fcm_id":"xyz123954"
+}
+
+### Login
+Post {{BASE_URL}}/check_user_exists
+Content-Type: {{CONTENT_TYPE}}
+Authorization: {{TOKEN}}
+
+# End: Account

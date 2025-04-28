@@ -68,10 +68,10 @@ class Api extends REST_Controller
             $firebase_id = $this->post('firebase_id');
 
             // ------- Should be Enabled for server  ----------
-            $is_verify = $this->verify_user($firebase_id);
+            // $is_verify = $this->verify_user($firebase_id);
             // ---------------------------------------------------
             // ------- Should be Disable for server  ----------
-            // $is_verify=true;
+            $is_verify=true;
             // ---------------------------------------------------
             if ($is_verify) {
                 $type = $this->post('type');
@@ -755,19 +755,13 @@ class Api extends REST_Controller
 
     public function check_user_exists_post()
     {
-        if ($this->post('firebase_id')) {
-            $firebase_id = $this->post('firebase_id');
-            $res = $this->db->where('firebase_id', $firebase_id)->get('tbl_users')->row_array();
-            if ($res) {
-                $response['error'] = false;
-                $response['message'] = "130";
-            } else {
-                $response['error'] = false;
-                $response['message'] = "131";
-            }
+        $is_user = $this->verify_token();
+        if (!$is_user['error']) {
+            $response['error'] = false;
+            $response['message'] = "130";
         } else {
-            $response['error'] = true;
-            $response['message'] = "103";
+            $response['error'] = false;
+            $response['message'] = "131";
         }
 
         $this->response($response, REST_Controller::HTTP_OK);
@@ -4520,8 +4514,10 @@ class Api extends REST_Controller
 
     public function encrypt_data($key, $text)
     {
+        $key = mb_substr($key, 0, 28, '8bit'); // Cut 28 bytes
+        $key = str_pad($key, 32, "\0");        // Pad with \0 null bytes
+    
         $iv = openssl_random_pseudo_bytes(16);
-        $key .= "0000";
         $encrypted_data = openssl_encrypt($text, 'aes-256-cbc', $key, 0, $iv);
         $data = array("ciphertext" => $encrypted_data, "iv" => bin2hex($iv));
         return $data;

@@ -1,0 +1,31 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "Listen for Xdebug (Docker)",
+        "type": "php",
+        "request": "launch",
+        "port": 9003,
+        "pathMappings": {
+          "/var/www/html": "${workspaceFolder}"
+        },
+        "hostname": "localhost",
+        "log": true
+      },
+      {
+        "name": "Launch Built-in PHP Server (Docker)",
+        "type": "php",
+        "request": "launch",
+        "program": "",
+        "cwd": "${workspaceFolder}",
+        "runtimeExecutable": "/usr/bin/php",
+        "runtimeArgs": [
+          "-S",
+          "0.0.0.0:8000",
+          "-t",
+          "public"
+        ],
+        "port": 9003
+      }
+    ]
+  }
