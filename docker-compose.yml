@@ -20,7 +20,7 @@ services:
   db:
     image: mysql:5.7
     platform: linux/amd64
-    container_name: cocdeigniter_db
+    container_name: codeigniter_db
     environment:
       MYSQL_DATABASE: ci_db
       MYSQL_ROOT_PASSWORD: root
